@@ -1,61 +1,59 @@
 'use strict';
-
-/*
-
-Refactor the following functions. Use higher-order functions rather than for-loops.
-
-Choose from the following higher-order functions: map, filter, reduce, every, some
-
-Run the command 'mocha' to test. Tests check for expected output and absence of for-loops.
-
-*/
-
 module.exports = {
 
+  // REDUCE
   sum: (arr, base) => {
-    let sum = base;
-    for (var i = 0; i < arr.length; i++){
-      sum += arr[i];
-    }
-    return sum;
+    var sum = arr.reduce((x, y) => (x + y));
+    return sum + base;
   },
+  //Done
 
+  // SOME
   someObjsContainProp: (arr, prop) => {
-    for(var i = 0; i < arr.length; i++){
-      if(arr[i].hasOwnProperty(prop)){
-        return true;
-      }
-    }
-    return false;
+    return arr.some(function(person){
+   var hasProp = person.hasOwnProperty(prop);
+   if(hasProp === true) {
+       return true;
+     } else {
+       return false;
+     }
+   });
   },
+  // Done
 
+  // MAP
   convertNameArrayToObject: (arr) => {
-    let nameObj = [];
-    for(var i = 0; i < arr.length; i++){
-      let obj = {};
-      obj.first = arr[i][0];
-      obj.last = arr[i][1];
-      nameObj.push(obj);
-    }
-    return nameObj;
+    return arr.map(function(x) {
+      var first = x[0];
+      var last = x[1];
+      var nameObject = {};
+      nameObject.first = first;
+      nameObject.last = last;
+      return nameObject;
+    });
   },
+  // Done
 
+  // EVERY
   objContainsProp: (arr, prop) => {
-    for (var i = 0; i < arr.length; i++){
-      if(!arr[i].hasOwnProperty(prop)){
-        return false;
-      }
-    }
-    return true;
+    return arr.every(function(person){
+      var hasProp = person.hasOwnProperty(prop);
+      if(hasProp === true) {
+          return true;
+        } else {
+          return false;
+        }
+      });
   },
+  // Done
 
+  // FILTER
   stringMatch: (arr, str) => {
-    let matches = [];
-    for(var i = 0; i < arr.length; i++){
-      if (arr[i].includes(str)){
-        matches.push(arr[i]);
+    return arr.filter(function(word) {
+      if (word.includes(str)) {
+        return word;
       }
-    }
-    return matches;
-  },
+    });
+  }
+  // Done
 };
